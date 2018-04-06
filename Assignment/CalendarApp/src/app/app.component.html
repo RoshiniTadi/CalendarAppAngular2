@@ -1,0 +1,91 @@
+<div>
+        <label>Background color </label>
+     <select (change)="selectEventHandler($event)">
+            <option value="pink">Pink</option>
+             <option value="Blue">Blue</option>
+            <option value="red">Red</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Black">Black</option>
+        </select>
+    </div>
+<div class="width"></div>
+  <div>
+        <label>Font color </label>
+        <select (change)="selectEventHandler1($event)">
+               <option value="pink">Pink</option>
+                <option value="Blue">Blue</option>
+               <option value="red">Red</option>
+               <option value="Yellow">Yellow</option>
+               <option value="Black">Black</option>
+           </select>
+        </div> 
+<div class="container-input">
+     <form [formGroup]='dateForm'> 
+           
+  <input type="text" name="dateFrom" placeholder="start date" formControlName="dateFrom" >
+    <input type="text" name="dateTo" placeholder="end date" formControlName="dateTo">
+    <button class="primary" (click)='reserve()'>Generate</button>
+    
+</form>
+
+
+</div>
+<div class = "c" *ngIf='isReserved' class='reserved'>
+    {{isReserved}}
+
+</div>
+
+<div class="parent-container">
+<div class="row">
+    <div class="column">
+        <div class="container-month">
+                <div  class="fa fa-chevron-left"(click)='previousMonth()' style="padding-right:30px"  ></div>
+                <div style="padding-right:110px">{{current}}</div>
+        </div>
+ <div class="container" >
+      
+    <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">S</div>
+    <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">M</div>
+    <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">T</div>
+    <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">W</div>
+    <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">T</div>
+    <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">F</div>
+    <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">S</div> 
+    <div id ="calendar-container" class="container">
+        <div *ngFor='let day of daysArr'>
+          <div class='calender-days' [style.background-color]="getColor()" [style.color]="getFont()" (click)='selectedDate(day)' [ngClass]="{'inactive ': !day, 'selected': isSelected(day), 'today': todayCheck(day)}">{{day?.date()}}</div>
+         
+       </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class=row>
+    <div class="column">
+           <div class="container-month">
+                <div style="padding-left:60px">{{next}}</div>
+                <div class="fa fa-chevron-right"(click)='nextMonth()' style="padding-left:20px"></div>
+           </div>
+            <div class="container">
+                    
+               <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">S</div>
+               <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">M</div>
+               <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">T</div>
+               <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">W</div>
+               <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">T</div>
+               <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">F</div>
+               <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">S</div> 
+               <div id ="calendar-container" class="container">
+                   <div *ngFor='let day of daysArrNext'>
+                     <div class='calender-days' [style.background-color]="getColor()" [style.color]="getFont()" (click)='selectedDate(day)' [ngClass]="{'inactive ': !day, 'selected': isSelected(day), 'today': todayCheck(day)}">{{day?.date()}}</div>
+                  </div>
+             
+                 </div> 
+               </div> 
+            </div>
+ </div>
+</div>
+
+  
+   
+  
