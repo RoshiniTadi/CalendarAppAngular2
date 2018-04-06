@@ -1,7 +1,8 @@
+@import '~font-awesome/css/font-awesome.css';
 .parent-container
 {
     display : flex;
-    width:504px;
+    width:600px;
     margin:auto;
     flex-direction:  row;
   flex-wrap :wrap;
@@ -61,7 +62,7 @@ width: 252px;
     color:blueviolet; 
     border : 2.5px solid white;
    background-color : burlywood;
-
+    /* font-style:  */
   text-align: center;
     
 }
@@ -80,6 +81,6 @@ width: 252px;
 }
 
 .reserved {
-    color: red;
+    color:blue;
     text-align: center
 }

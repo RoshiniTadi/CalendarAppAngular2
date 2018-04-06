@@ -1,6 +1,10 @@
+<div class="row">
+    <div class="column">
+
 <div>
-        <label>Background color </label>
+      <b>  <label style="padding-right:30px">Background color </label> </b>
      <select (change)="selectEventHandler($event)">
+            <option value="please select">Please select</option>
             <option value="pink">Pink</option>
              <option value="Blue">Blue</option>
             <option value="red">Red</option>
@@ -8,17 +12,42 @@
             <option value="Black">Black</option>
         </select>
     </div>
-<div class="width"></div>
+    <br>
+   
   <div>
-        <label>Font color </label>
+      
+        <b><label style="padding-right:85px">Font color </label></b>
         <select (change)="selectEventHandler1($event)">
+                <option value="please select">Please select</option>
                <option value="pink">Pink</option>
                 <option value="Blue">Blue</option>
                <option value="red">Red</option>
                <option value="Yellow">Yellow</option>
                <option value="Black">Black</option>
            </select>
-        </div> 
+
+        </div>
+        <br>
+       
+        <div>
+
+        <b><label style="padding-right:75px">date Format</label></b>
+        <select (change)="selectEventHandler2($event)">
+                <option value='MM/DD/YYYY'>MM/DD/YYYY</option>
+               <option value='DD/MM/YYYY'>DD/MM/YYYY</option>
+           </select>
+        </div>
+        <br>
+        <div>
+
+                <b><label style="padding-right:115px">Width</label></b>
+                <select (change)="selectEventHandler3($event)">
+                        <option value='250px'>250px</option>
+                       <option value='260px'>260px</option>
+                   </select>
+                </div>
+    </div> 
+    <div class="column">
 <div class="container-input">
      <form [formGroup]='dateForm'> 
            
@@ -39,10 +68,10 @@
 <div class="row">
     <div class="column">
         <div class="container-month">
-                <div  class="fa fa-chevron-left"(click)='previousMonth()' style="padding-right:30px"  ></div>
+                <div class='fa fa-chevron-left' (click)='previousMonth()' style="padding-right:30px"  ></div>
                 <div style="padding-right:110px">{{current}}</div>
         </div>
- <div class="container" >
+ <div class="container" [style.width]=getWidth() >
       
     <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">S</div>
     <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">M</div>
@@ -66,7 +95,7 @@
                 <div style="padding-left:60px">{{next}}</div>
                 <div class="fa fa-chevron-right"(click)='nextMonth()' style="padding-left:20px"></div>
            </div>
-            <div class="container">
+            <div class="container" [style.width]=getWidth()>
                     
                <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">S</div>
                <div class ="calender-days" [style.background-color]="getColor()" [style.color]="getFont()">M</div>
@@ -86,6 +115,6 @@
  </div>
 </div>
 
-  
-   
+</div> 
+</div> 
   

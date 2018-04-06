@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   }
   public isReserved = null;
   public dateForm:FormGroup;
-
+public width:string='';
   public date;
   public selectedColour:string='';
   public selectedFont:string='';
@@ -28,13 +28,9 @@ export class AppComponent implements OnInit {
   public current:string;
   public next:string;
   public dateNext;
-  public datePrev;
   public daysArr;
   public daysArrNext;
-  public daysArrPrev;
-
-  car:Car = new Car();
-    colours = Array<Colour>();
+ public formatString='MM/DD/YYYY'
 ngOnInit()
 { this.current=moment().format('MMMM')+" "+moment().format('YYYY');
   this.next=moment().add(1,'M').format('MMMM')+" "+moment().add(1,'M').format('YYYY');
@@ -43,15 +39,6 @@ ngOnInit()
   this.daysArr=this.createCalendar(this.date);
   this.dateNext=this.date1.add(1,'M');
   this.daysArrNext=this.createCalendar(this.dateNext);
-  this.colours = Array<Colour>();
-  this.colours.push(new Colour(-1, 'Please select'));
-  this.colours.push(new Colour(1, 'Green'));
-  this.colours.push(new Colour(2, 'Pink'));
-  this.colours.push(new Colour(3, 'Orange'));
-  this.colours.push(new Colour(4, 'Black'));
-
-  this.car = new Car();
-  this.car.color = new Colour(-1,'');        
 }
 createCalendar(month)
 {
@@ -107,15 +94,15 @@ public reserve() {
   }
   let dateFromMoment = this.dateForm.value.dateFrom;
   let dateToMoment = this.dateForm.value.dateTo;
-  this.isReserved = `Reserved from ${dateFromMoment} to ${dateToMoment}`;
+  this.isReserved = `Selected from ${dateFromMoment} to ${dateToMoment}`;
 }
 
 public isSelected(day) {
   if (!day) {
     return false;
   }
-  let dateFromMoment = moment(this.dateForm.value.dateFrom, 'MM/DD/YYYY');
-  let dateToMoment = moment(this.dateForm.value.dateTo, 'MM/DD/YYYY');
+  let dateFromMoment = moment(this.dateForm.value.dateFrom, this.formatString );
+  let dateToMoment = moment(this.dateForm.value.dateTo, this.formatString);
   if (this.dateForm.valid) {
     return (
       dateFromMoment.isSameOrBefore(day) && dateToMoment.isSameOrAfter(day)
@@ -127,7 +114,7 @@ public isSelected(day) {
 }
 
 public selectedDate(day) {
-  let dayFormatted = day.format('MM/DD/YYYY');
+  let dayFormatted = day.format(this.formatString);
   if (this.dateForm.valid) {
     this.dateForm.setValue({ dateFrom: null, dateTo: null });
     return;
@@ -152,6 +139,14 @@ public selectEventHandler1(event:any)
 {
   this.selectedFont=event.target.value;
 }
+public selectEventHandler2(event:any)
+{
+  this.formatString=event.target.value;
+}
+public selectEventHandler3(event:any)
+{
+  this.width=event.target.value;
+}
 public getColor()
 {
   return this.selectedColour;
@@ -160,20 +155,12 @@ public getFont()
 {
     return this.selectedFont;
 }
-}
-
-export class Car
+public getFormat()
 {
-    color:Colour;
+    return this.formatString;
 }
-
-export class Colour
+public getWidth()
 {
-    constructor(id:number, name:string) {
-        this.id=id;
-        this.name=name;
-    }
-
-    id:number;
-    name:string;
+    return this.width;
+}
 }
